@@ -18,11 +18,9 @@ import PropTypes from 'prop-types';
 import centosIcon from 'asset/image/centos.svg';
 import ubuntuIcon from 'asset/image/ubuntu.svg';
 import fedoraIcon from 'asset/image/fedora.svg';
-import windowsIcon from 'asset/image/windows.svg';
 import debianIcon from 'asset/image/debian.svg';
-import coreosIcon from 'asset/image/coreos.svg';
 import archIcon from 'asset/image/arch.svg';
-import freebsdIcon from 'asset/image/freebsd.svg';
+import rockyIcon from 'asset/image/rocky.svg';
 import othersIcon from 'asset/image/others.svg';
 import { Tooltip } from 'antd';
 import styles from './index.less';
@@ -41,14 +39,12 @@ export default class index extends Component {
   constructor(props) {
     super(props);
     this.icons = {
-      centos: centosIcon,
-      ubuntu: ubuntuIcon,
-      fedora: fedoraIcon,
-      windows: windowsIcon,
+      rocky: rockyIcon,
       debian: debianIcon,
-      coreos: coreosIcon,
+      ubuntu: ubuntuIcon,
+      centos: centosIcon,
+      fedora: fedoraIcon,
       arch: archIcon,
-      freebsd: freebsdIcon,
       others: othersIcon,
     };
   }

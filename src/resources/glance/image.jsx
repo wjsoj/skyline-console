@@ -37,14 +37,12 @@ export const imageVisibility = {
 };
 
 export const imageOS = {
-  centos: t('CentOS'),
-  ubuntu: t('Ubuntu'),
-  fedora: t('Fedora'),
-  windows: t('Windows'),
+  rocky: t('Rocky'),
   debian: t('Debian'),
-  coreos: t('CoreOS'),
+  ubuntu: t('Ubuntu'),
+  centos: t('CentOS'),
+  fedora: t('Fedora'),
   arch: t('Arch'),
-  freebsd: t('FreeBSD'),
   others: t('Others'),
 };
 
@@ -149,14 +147,12 @@ export const canSnapshotCreateInstance = (item) => item.status === 'active';
 
 export const getImageSystemTabs = () => {
   const valueList = [
+    'rocky',
     'centos',
     'ubuntu',
     'fedora',
-    'windows',
     'debian',
-    'coreos',
     'arch',
-    'freebsd',
     'others',
   ];
   return valueList.map((value) => {
