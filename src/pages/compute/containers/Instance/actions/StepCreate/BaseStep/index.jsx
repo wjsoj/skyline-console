@@ -599,10 +599,10 @@ export class BaseStep extends Base {
 
   get bootFromVolumeOptions() {
     return [
-      {
-        value: true,
-        label: t('Yes - Create a new system disk'),
-      },
+      // {
+      //   value: true,
+      //   label: t('Yes - Create a new system disk'),
+      // },
       {
         value: false,
         label: t('No - Do not create a new system disk'),
