@@ -2875,7 +2875,7 @@
   "Weight": "权重",
   "Weights": "权重",
   "Welcome": "欢迎",
-  "Welcome, {name}": "欢迎，登录{name}",
+  "Welcome, {name}": "欢迎登录{name}",
   "Western Sahara": "西撒哈拉",
   "When auto-expand/close is enabled, if there is no operation in the pop-up window, the pop-up window will be closed automatically after { seconds } seconds, and it will be automatically expanded when the displayed content changes.": "开启自动展开/关闭时，如在该弹窗内无操作，将在 { seconds } 秒后自动关闭弹窗，当展示内容有变化时，将自动展开。",
   "When the computing service starts the recycling instance interval, the instance will be stored in the recycling bin after deletion, and will be retained according to the corresponding time interval. You can choose to restore it within this period. After successful recovery, the status of the instance is running and related resources remain unchanged.": "当计算服务开启回收实例间隔时，删除后云主机会存放在回收站，按对应的时间间隔保留，在此期限内可以选择恢复。恢复成功后的云主机状态为运行中，且相关资源保持不变。",
