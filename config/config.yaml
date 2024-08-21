@@ -5,9 +5,7 @@ server: http://localhost
 theme: default
 
 globalVariables:
-  defaultLanguage: en
+  defaultLanguage: zh-hans
   supportLanguages: # use value in i18n.js
     - en
     - zh-hans
-    - ko-kr
-    - ru

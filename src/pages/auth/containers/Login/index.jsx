@@ -99,7 +99,7 @@ export class Login extends Component {
 
   get ssoProtocols() {
     return {
-      openid: t('OpenID Connect'),
+      openid: t('PKU IAAA Login'),
     };
   }
 
@@ -129,7 +129,7 @@ export class Login extends Component {
     if (!this.enableSSO) {
       return [];
     }
-    return [this.passwordOption, ...this.SSOOptions];
+    return [...this.SSOOptions, this.passwordOption];
   }
 
   onLoginTypeChange = (value, option) => {
@@ -253,7 +253,7 @@ export class Login extends Component {
       required: true,
       message: t('Please select login type!'),
       extra: t(
-        'If you are not sure which authentication method to use, please contact your administrator.'
+        'Please login using IAAA unless otherwise instructed by the administrator.'
       ),
       render: () => (
         <Select
