@@ -262,11 +262,13 @@ export class Login extends Component {
           placeholder={t('Select a login type')}
           options={this.loginTypeOptions}
           onChange={this.onLoginTypeChange}
+          defaultValue={this.enableSSO ? this.SSOOptions[0].value : 'password'}
         />
       ),
     };
     if (this.enableSSO) {
       if (loginType === 'password') {
+        console.log('loginType:', loginType);
         return [typeItem, ...namePasswordItems, submitItem];
       }
 
