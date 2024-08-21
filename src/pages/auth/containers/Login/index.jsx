@@ -151,7 +151,7 @@ export class Login extends Component {
 
   get defaultValue() {
     const data = {
-      loginType: 'password',
+      loginType: 'sso',
     };
     if (this.regions.length === 1) {
       data.region = this.regions[0].value;
