@@ -65,8 +65,7 @@ export class Login extends Component {
   }
 
   get productName() {
-    const { product_name = { zh: t('Cloud Platform'), en: 'Cloud Platform' } } =
-      this.info;
+    const { product_name = { zh: t('CLab 实验平台'), en: 'CLab' } } = this.info;
     const { getLocaleShortName } = i18n;
     const language = getLocaleShortName();
     const name =
