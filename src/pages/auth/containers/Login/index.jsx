@@ -31,7 +31,9 @@ export class Login extends Component {
       error: false,
       message: '',
       loading: false,
-      loginTypeOption: this.passwordOption,
+      loginTypeOption: this.enableSSO
+        ? this.SSOOptions[0]
+        : this.passwordOption,
     };
   }
 
@@ -151,7 +153,7 @@ export class Login extends Component {
 
   get defaultValue() {
     const data = {
-      loginType: 'password',
+      loginType: this.enableSSO ? this.SSOOptions[0].value : 'password',
     };
     if (this.regions.length === 1) {
       data.region = this.regions[0].value;
