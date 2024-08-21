@@ -1926,7 +1926,7 @@
   "Please input your password!": "请输入密码！",
   "Please input {label}": "请输入{label}",
   "Please input {label}!": "请输入{label}！",
-  "Please login using IAAA unless otherwise instructed by the administrator.": "除非管理员另有说明，否则请使用IAAA登陆",
+  "Please login using IAAA unless otherwise instructed by the administrator.": "除非管理员另有说明，否则请使用统一认证登陆",
   "Please make sure this IP address be available to avoid creating VM failure.": "需检查此 IP 是否已被占用，否则可能创建失败。",
   "Please make sure this IP address be available.": "需确保此IP未被占用。",
   "Please note that when deleting a domain, all projects, users, and user groups under the domain will be deleted directly!": "请注意，删除域时，会直接把域下的项目、用户和用户组全部删除！",
