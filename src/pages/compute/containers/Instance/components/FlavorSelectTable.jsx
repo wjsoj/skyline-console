@@ -60,20 +60,21 @@ export class FlavorSelectTable extends Component {
     this.initDefaultValue();
   }
 
+  // Modified delete all&custom architecture
   get architectures() {
-    const custom = {
-      architecture: 'custom',
-    };
-    const all = {
-      architecture: 'all',
-    };
+    // const custom = {
+    //   architecture: 'custom',
+    // };
+    // const all = {
+    //   architecture: 'all',
+    // };
     const { isIronic = false, filterIronic = true } = this.props;
     const item = (this.settingStore.list.data || []).find(
       (it) => it.key === 'flavor_families'
     );
-    if (!item) {
-      return [all, custom];
-    }
+    // if (!item) {
+    //   return [all, custom];
+    // }
     let values = [];
     try {
       values = (item.value || []).filter((it) => {
@@ -92,7 +93,7 @@ export class FlavorSelectTable extends Component {
       // eslint-disable-next-line no-console
       console.log(e);
     }
-    return [all, ...values, custom];
+    return [...values];
   }
 
   get categories() {
@@ -298,7 +299,7 @@ export class FlavorSelectTable extends Component {
 
   renderCategorySelect() {
     const { arch } = this.state;
-    if (arch === 'custom' || arch === 'all') {
+    if (arch === 'custom') {
       return null;
     }
     return (

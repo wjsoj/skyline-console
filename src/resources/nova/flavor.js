@@ -297,14 +297,16 @@ export const getFlavorSearchFilters = (category) => {
       label: t('CPU'),
       name: 'vcpus',
       filterFunc: (vcpus, value) => {
-        return (`${vcpus}` || '').includes(value);
+        // Modified
+        // return (`${vcpus}` || '').includes(value);
+        return `${vcpus}` === value;
       },
     },
     {
       label: t('Memory'),
       name: 'ram',
       filterFunc: (ram, value) => {
-        return (formatSize(ram, 2) || '').includes(value);
+        return ram === value || ram === value * 1024;
       },
     },
   ];

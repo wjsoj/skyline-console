@@ -183,6 +183,16 @@ export class NetworkStep extends Base {
     return ['networkSelect', 'networks', 'ports'];
   }
 
+  // Modified hide port
+  get showPorts() {
+    const { networkSelectRows = [], portSelectRows = [] } = this.state;
+    // 端口非required && 没有条目
+    if (networkSelectRows.length && !portSelectRows.length) {
+      return false;
+    }
+    return true;
+  }
+
   get showSecurityGroups() {
     const { networkSelectRows = [], portSelectRows = [] } = this.state;
     if (!networkSelectRows.length && !portSelectRows.length) {
@@ -271,6 +281,7 @@ export class NetworkStep extends Base {
         type: 'select-table',
         // type: 'input',
         label: t('Ports'),
+        hidden: !this.showPorts,
         extraParams: { project_id: this.currentProjectId, status: 'DOWN' },
         backendPageStore: this.portStore,
         isMulti: true,

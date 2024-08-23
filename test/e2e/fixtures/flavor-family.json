@@ -1,5 +1,26 @@
 [
   {
+    "architecture": "all",
+    "categories": [
+      {
+        "name": "general_purpose",
+        "properties": []
+      },
+      {
+        "name": "compute_optimized",
+        "properties": []
+      },
+      {
+        "name": "memory_optimized",
+        "properties": []
+      },
+      {
+        "name": "high_clock_speed",
+        "properties": []
+      }
+    ]
+  },
+  {
     "architecture": "x86_architecture",
     "categories": [
       {

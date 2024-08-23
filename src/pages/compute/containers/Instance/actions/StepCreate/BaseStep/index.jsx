@@ -83,7 +83,8 @@ export class BaseStep extends Base {
       dataDisk: [],
     };
     if (source.value === 'image') {
-      values.bootFromVolume = true;
+      // Modified, change default bootFromVolume to false
+      values.bootFromVolume = false;
     }
     return values;
   }
@@ -661,11 +662,12 @@ export class BaseStep extends Base {
       ? this.imageStore.isLoading
       : this.imageStore.list.isLoading;
     return [
-      {
-        name: 'project',
-        label: t('Project'),
-        type: 'label',
-      },
+      // Modified hide project
+      // {
+      //   name: 'project',
+      //   label: t('Project'),
+      //   type: 'label',
+      // },
       {
         name: 'availableZone',
         label: t('Available Zone'),
@@ -787,6 +789,8 @@ export class BaseStep extends Base {
             span: 14,
           },
         },
+        // Modified, add tips
+        tip: '默认无需额外系统盘',
         options: this.bootFromVolumeOptions,
       },
       {
