@@ -39,9 +39,9 @@ export class Password extends Component {
   }
 
   componentDidMount() {
-    const { rootStore: { routing } = {} } = this.props;
+    // const { rootStore: { routing } = {} } = this.props;
     if (!this.passwordData || isEmpty(this.passwordData)) {
-      routing.push('/auth/login');
+      window.location.href = '/auth/login';
     }
   }
 
@@ -83,7 +83,7 @@ export class Password extends Component {
           t('Password changed successfully, please log in again.')
         );
         rootStore.setPasswordInfo(null);
-        rootStore.routing.push('/auth/login');
+        window.location.href = '/auth/login';
       },
       (err) => {
         const { response: { data: { error: { message } = {} } = {} } = {} } =

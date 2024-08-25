@@ -16,9 +16,9 @@ import BlankLayout from 'layouts/Blank';
 import E404 from 'pages/base/containers/404';
 import { lazy } from 'react';
 
-const Auth = lazy(() =>
-  import(/* webpackChunkName: "auth" */ 'pages/auth/App')
-);
+// const Auth = lazy(() =>
+//   import(/* webpackChunkName: "auth" */ 'pages/auth/App')
+// );
 
 const Basic = lazy(() =>
   import(/* webpackChunkName: "basic" */ 'pages/basic/App')
@@ -31,14 +31,6 @@ export default [
       {
         path: '/',
         redirect: { from: '/', to: '/base/overview', exact: true },
-      },
-      {
-        path: '/login',
-        redirect: { from: '/login', to: '/auth/login', exact: true },
-      },
-      {
-        path: '/auth',
-        component: Auth,
       },
       {
         path: '/',
