@@ -36,6 +36,8 @@ export default class BaseStepForm extends React.Component {
       formTemplate: cloneDeep(this.formTemplate),
       current: 0,
       data: {},
+      // Modified add show guide
+      showGuide: false,
     };
 
     this.values = {};
@@ -61,6 +63,11 @@ export default class BaseStepForm extends React.Component {
   get path() {
     const { location: { pathname = '' } = {} } = this.props;
     return pathname || '';
+  }
+
+  get currentGuide() {
+    const { showGuide } = this.state;
+    return showGuide;
   }
 
   get hasConfirmStep() {

@@ -60,20 +60,21 @@ export class FlavorSelectTable extends Component {
     this.initDefaultValue();
   }
 
+  // Modified delete all&custom architecture
   get architectures() {
-    const custom = {
-      architecture: 'custom',
-    };
-    const all = {
-      architecture: 'all',
-    };
+    // const custom = {
+    //   architecture: 'custom',
+    // };
+    // const all = {
+    //   architecture: 'all',
+    // };
     const { isIronic = false, filterIronic = true } = this.props;
     const item = (this.settingStore.list.data || []).find(
       (it) => it.key === 'flavor_families'
     );
-    if (!item) {
-      return [all, custom];
-    }
+    // if (!item) {
+    //   return [all, custom];
+    // }
     let values = [];
     try {
       values = (item.value || []).filter((it) => {
@@ -92,7 +93,7 @@ export class FlavorSelectTable extends Component {
       // eslint-disable-next-line no-console
       console.log(e);
     }
-    return [all, ...values, custom];
+    return [...values];
   }
 
   get categories() {
@@ -116,7 +117,7 @@ export class FlavorSelectTable extends Component {
       return [];
     }
 
-    return (this.flavorStore.list.data || [])
+    const res = (this.flavorStore.list.data || [])
       .filter((it) => {
         if (excludeFlavors.length > 0) {
           return excludeFlavors.indexOf(it.id) < 0;
@@ -144,6 +145,19 @@ export class FlavorSelectTable extends Component {
         }
         return it.architecture === arch && it.category === category;
       });
+    // Modified sort by vcpus
+    return res.sort((a, b) => {
+      if (a.vcpus > b.vcpus) {
+        return 1;
+      }
+      if (a.vcpus < b.vcpus) {
+        return -1;
+      }
+      if (a.ram > b.ram) {
+        return 1;
+      }
+      return -1;
+    });
   }
 
   getBaseColumns() {
@@ -298,7 +312,7 @@ export class FlavorSelectTable extends Component {
 
   renderCategorySelect() {
     const { arch } = this.state;
-    if (arch === 'custom' || arch === 'all') {
+    if (arch === 'custom') {
       return null;
     }
     return (
@@ -330,6 +344,8 @@ export class FlavorSelectTable extends Component {
       filterParams: getFlavorSearchFilters(),
       value,
       onChange: this.onChange,
+      // Modified pageSize
+      pageSize: 8,
       disabledFunc,
     };
     return <SelectTable {...props} />;

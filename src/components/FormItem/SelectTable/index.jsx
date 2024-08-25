@@ -531,7 +531,7 @@ export default class SelectTable extends React.Component {
 
   handleChange = (pagination, filters, sorter, extra) => {
     // eslint-disable-next-line no-console
-    console.log(pagination, filters, sorter, extra);
+    console.log(pagination, filters, sorter, extra, this.getSortKey(sorter));
     let { current, pageSize } = pagination;
     const { backendPageStore, isSortByBack } = this.props;
     const params = {

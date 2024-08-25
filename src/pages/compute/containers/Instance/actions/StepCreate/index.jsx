@@ -13,6 +13,8 @@
 // limitations under the License.
 
 import React from 'react';
+import { driver } from 'driver.js';
+import 'driver.js/dist/driver.css';
 import { inject, observer } from 'mobx-react';
 import { toJS } from 'mobx';
 import { InputNumber, Badge, message as $message } from 'antd';
@@ -53,7 +55,83 @@ export class StepCreate extends StepAction {
     this.getQuota();
     this.status = 'success';
     this.errorMsg = '';
+
+    // Modified add step guide
+    this.driverObj = null;
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.current < this.state.current) {
+      if (this.state.showGuide) this.startGuide();
+    }
+  }
+
+  startGuide = () => {
+    this.setState({
+      showGuide: true,
+    });
+    console.log('start guide', this.state.showGuide);
+    switch (this.state.current) {
+      case 0:
+        this.driverObj = driver({
+          showProgress: true,
+          prevBtnText: '上一步',
+          nextBtnText: '下一步',
+          doneBtnText: '完成',
+          closeBtnText: '关闭',
+          steps: [
+            {
+              element: '#form-item-col-availableZone',
+              popover: { title: 'Title', description: 'Description' },
+            },
+            {
+              element: '#form-item-col-flavor',
+              popover: { title: 'Title', description: 'Description' },
+            },
+            {
+              element: '#form-item-col-source',
+              popover: { title: 'Title', description: 'Description' },
+            },
+            {
+              element: '#form-item-col-image',
+              popover: { title: 'Title', description: 'Description' },
+            },
+          ],
+        });
+        break;
+      case 1:
+        this.driverObj = driver({
+          showProgress: true,
+          prevBtnText: '上一步',
+          nextBtnText: '下一步',
+          doneBtnText: '完成',
+          closeBtnText: '关闭',
+          steps: [
+            {
+              element: '#form-item-col-networkSelect',
+              popover: { title: 'Title', description: 'Description' },
+            },
+            {
+              element: '#form-item-col-ports',
+              popover: { title: 'Title', description: 'Description' },
+            },
+          ],
+        });
+        break;
+      default:
+        break;
+    }
+    this.driverObj.drive();
+  };
+
+  endGuide = () => {
+    this.setState({
+      showGuide: false,
+    });
+    if (this.driverObj && this.driverObj.isActive()) {
+      this.driverObj.destroy();
+    }
+  };
 
   static policy = [
     'os_compute_api:servers:create',
@@ -515,8 +593,33 @@ export class StepCreate extends StepAction {
     );
   }
 
+  // Modified add step guide button
   renderExtra() {
-    return null;
+    return (
+      <div>
+        {this.state.showGuide ? (
+          <div
+            onClick={this.endGuide}
+            style={{
+              color: 'blue',
+              cursor: 'pointer',
+            }}
+          >
+            关闭新手引导
+          </div>
+        ) : (
+          <div
+            onClick={this.startGuide}
+            style={{
+              color: 'blue',
+              cursor: 'pointer',
+            }}
+          >
+            显示新手引导
+          </div>
+        )}
+      </div>
+    );
   }
 
   getCountInputConfig() {
