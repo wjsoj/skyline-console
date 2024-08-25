@@ -117,7 +117,7 @@ export class FlavorSelectTable extends Component {
       return [];
     }
 
-    return (this.flavorStore.list.data || [])
+    const res = (this.flavorStore.list.data || [])
       .filter((it) => {
         if (excludeFlavors.length > 0) {
           return excludeFlavors.indexOf(it.id) < 0;
@@ -145,6 +145,19 @@ export class FlavorSelectTable extends Component {
         }
         return it.architecture === arch && it.category === category;
       });
+    // Modified sort by vcpus
+    return res.sort((a, b) => {
+      if (a.vcpus > b.vcpus) {
+        return 1;
+      }
+      if (a.vcpus < b.vcpus) {
+        return -1;
+      }
+      if (a.ram > b.ram) {
+        return 1;
+      }
+      return -1;
+    });
   }
 
   getBaseColumns() {
@@ -331,6 +344,8 @@ export class FlavorSelectTable extends Component {
       filterParams: getFlavorSearchFilters(),
       value,
       onChange: this.onChange,
+      // Modified pageSize
+      pageSize: 8,
       disabledFunc,
     };
     return <SelectTable {...props} />;

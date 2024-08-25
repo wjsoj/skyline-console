@@ -21,6 +21,7 @@ import SimpleForm from 'components/SimpleForm';
 import globalSkylineStore from 'stores/skyline/skyline';
 import i18n from 'core/i18n';
 import { isEmpty } from 'lodash';
+import pkuLogo from 'asset/image/pku-logo.png';
 import styles from './index.less';
 
 export class Login extends Component {
@@ -408,7 +409,18 @@ export class Login extends Component {
   }
 
   renderExtra() {
-    return null;
+    // Modified can add something on the login page
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '15px',
+          left: '20px',
+        }}
+      >
+        <img src={pkuLogo} width="100px" alt="logo" />
+      </div>
+    );
   }
 
   render() {

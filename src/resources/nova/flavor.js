@@ -297,7 +297,7 @@ export const getFlavorSearchFilters = (category) => {
       label: t('CPU'),
       name: 'vcpus',
       filterFunc: (vcpus, value) => {
-        // Modified
+        // Modified filter function
         // return (`${vcpus}` || '').includes(value);
         return `${vcpus}` === value;
       },
