@@ -195,14 +195,20 @@ export class RootStore {
 
   @action
   goToLoginPage(currentPath, refresh) {
-    if (currentPath) {
-      this.routing.push(`/auth/login?referer=${currentPath}`);
-    } else {
-      this.routing.push('/auth/login');
-    }
-    if (refresh) {
-      window.location.reload();
-    }
+    // if (currentPath) {
+    //   this.routing.push(`/auth/login?referer=${currentPath}`);
+    // } else {
+    //   this.routing.push('/auth/login');
+    // }
+    // if (refresh) {
+    //   window.location.reload();
+    // }
+
+    // make eslint happy
+    console.log(currentPath, refresh);
+
+    // redirect to login page
+    window.location.href = '/auth/login';
   }
 
   @action
