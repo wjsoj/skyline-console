@@ -345,7 +345,7 @@ export class FlavorSelectTable extends Component {
       value,
       onChange: this.onChange,
       // Modified pageSize
-      pageSize: 8,
+      pageSize: 4,
       disabledFunc,
     };
     return <SelectTable {...props} />;
