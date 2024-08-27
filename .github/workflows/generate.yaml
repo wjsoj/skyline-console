@@ -1,0 +1,53 @@
+name: Build and Upload Package
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16'
+
+    - name: Install yarn
+      uses: borales/actions-yarn@v4
+      with:
+        cmd: install
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install Python dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install wheel
+
+    - name: Build package
+      run: make package
+    
+    - name: Install curl
+      run: |
+        sudo apt update 
+        sudo apt install curl
+
+    - name: Upload to JFrog Artifactory
+      env:
+        JFROG_BEARER_TOKEN: ${{ secrets.JFROG_BEARER_TOKEN }}
+      run: |
+        curl -H "Authorization: Bearer $JFROG_BEARER_TOKEN" \
+             -X PUT "https://jfrog.lcpu.dev/artifactory/cloud-doc/skyline.tar.gz" \
+             -T ./dist/skyline*.whl
