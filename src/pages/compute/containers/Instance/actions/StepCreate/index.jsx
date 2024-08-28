@@ -81,20 +81,35 @@ export class StepCreate extends StepAction {
           closeBtnText: '关闭',
           steps: [
             {
-              element: '#form-item-col-availableZone',
-              popover: { title: 'Title', description: 'Description' },
-            },
-            {
               element: '#form-item-col-flavor',
-              popover: { title: 'Title', description: 'Description' },
+              popover: {
+                title: '选择实例类型',
+                description:
+                  'Playgrounds 适合轻量负载，Labs and Courses 适合课程实验，Elite Computing 适合对计算性能要求较高的其他场景。\n 小贴士：创建主机的页面是可以滚动的，有很多选项在页面中底部，不要忘记填写它们。',
+              },
             },
             {
               element: '#form-item-col-source',
-              popover: { title: 'Title', description: 'Description' },
+              popover: {
+                title: '选择启动源',
+                description: '新主机推荐选择从镜像启动',
+              },
             },
             {
               element: '#form-item-col-image',
-              popover: { title: 'Title', description: 'Description' },
+              popover: {
+                title: '选择虚拟机镜像',
+                description:
+                  '平台准备了多种操作系统镜像可供选用，目前平台定期验证并维护 Rocky Linux, Debian, Ubuntu 和 Arch Linux 的镜像及文档。',
+              },
+            },
+            {
+              element: '#form-item-col-bootFromVolume',
+              popover: {
+                title: '选择云硬盘',
+                description:
+                  'SSD是高性能磁盘，适合作为系统盘。HDD是高性能机械硬盘集群，性能也不差，可以用来当系统盘或数据盘。如果选择不创建云硬盘，则默认使用HDD。',
+              },
             },
           ],
         });
@@ -109,11 +124,37 @@ export class StepCreate extends StepAction {
           steps: [
             {
               element: '#form-item-col-networkSelect',
-              popover: { title: 'Title', description: 'Description' },
+              popover: {
+                title: '选择网络',
+                description:
+                  '新手推荐直接使用“共享网络”中的“PKU”，获得校园网IP。如果有更多需求，可以参考文档中的”网络-自组网“一节组建自己的虚拟网络。',
+              },
+            },
+          ],
+        });
+        break;
+      case 2:
+        this.driverObj = driver({
+          showProgress: true,
+          prevBtnText: '上一步',
+          nextBtnText: '下一步',
+          doneBtnText: '完成',
+          closeBtnText: '关闭',
+          steps: [
+            {
+              element: '#form-item-col-name',
+              popover: {
+                title: '命名这个云主机',
+                description: '在同一个项目中的云主机不能重名。',
+              },
             },
             {
-              element: '#form-item-col-ports',
-              popover: { title: 'Title', description: 'Description' },
+              element: '#form-item-col-keypair',
+              popover: {
+                title: '选择登陆云主机的公钥',
+                description:
+                  '为了安全性，建议使用密钥登陆云主机。更多内容请参考文档中的“快速开始”部分。\n 完成这步之后，就可以点击页面右下角的创建云主机，完成创建。',
+              },
             },
           ],
         });
