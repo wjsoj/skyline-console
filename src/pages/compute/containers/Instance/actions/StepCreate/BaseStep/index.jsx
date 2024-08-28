@@ -83,8 +83,7 @@ export class BaseStep extends Base {
       dataDisk: [],
     };
     if (source.value === 'image') {
-      // Modified, change default bootFromVolume to false
-      values.bootFromVolume = false;
+      values.bootFromVolume = true;
     }
     return values;
   }
@@ -790,7 +789,7 @@ export class BaseStep extends Base {
           },
         },
         // Modified, add tips
-        tip: '默认无需额外系统盘',
+        tip: '不新增系统盘，则默认使用HDD存储',
         options: this.bootFromVolumeOptions,
       },
       {
@@ -801,6 +800,7 @@ export class BaseStep extends Base {
         required: this.showSystemDiskByBootFromVolume,
         hidden: !this.showSystemDiskByBootFromVolume,
         validator: this.checkSystemDisk,
+        defaultItemValue: this.getSystemDiskMinSize(),
         minSize: this.getSystemDiskMinSize(),
         extra: t('Disk size is limited by the min disk of flavor, image, etc.'),
         onChange: this.onSystemDiskChange,
