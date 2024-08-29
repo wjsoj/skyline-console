@@ -36,7 +36,7 @@ export class BlankLayout extends Component {
   }
 
   get title() {
-    const { title = { zh: t('Cloud'), en: 'Cloud' } } = this.info;
+    const { title = { zh: t('PKU CLab'), en: 'PKU CLab' } } = this.info;
     const { getLocaleShortName } = i18n;
     const language = getLocaleShortName();
     return title[language] || t('Cloud') || 'Cloud';
