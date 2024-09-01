@@ -1,6 +1,6 @@
 host: 0.0.0.0
 port: 8088
-server: http://clab.pku.edu.cn
+server: https://clab.pku.edu.cn
 
 theme: default
 

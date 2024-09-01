@@ -104,6 +104,7 @@ export default class SelectTable extends React.Component {
     imageTabAuto: PropTypes.bool,
     refreshFunc: PropTypes.func,
     hideRefresh: PropTypes.bool,
+    chooseFirst: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -131,6 +132,7 @@ export default class SelectTable extends React.Component {
     imageTabAuto: false,
     refreshFunc: null,
     hideRefresh: false,
+    chooseFirst: false,
   };
 
   constructor(props) {
@@ -154,6 +156,8 @@ export default class SelectTable extends React.Component {
 
   componentDidMount() {
     this.getData();
+    const { chooseFirst } = this.props;
+    if (chooseFirst) this.setFirst();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -166,6 +170,22 @@ export default class SelectTable extends React.Component {
       this.onChange({ selectedRowKeys: newKeys });
     }
   }
+
+  setFirst = async () => {
+    // make eslint happy
+    const { pageSize } = this.state;
+    const { extraParams } = this.props;
+    const params = {
+      limit: pageSize,
+      page: 1,
+      ...extraParams,
+    };
+    const data = await this.fetchDataByPage(params);
+    this.setState({
+      selectedRowKeys: [data[0].id],
+      selectedRows: [data[0]],
+    });
+  };
 
   getData() {
     const { backendPageStore, pageSize } = this.props;

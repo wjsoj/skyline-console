@@ -308,6 +308,7 @@ export class NetworkStep extends Base {
         ),
         backendPageStore: this.securityGroupStore,
         extraParams: { project_id: this.currentProjectId },
+        chooseFirst: true,
         hidden: !this.showSecurityGroups,
         required: this.showSecurityGroups,
         isMulti: true,
