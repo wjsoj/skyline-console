@@ -122,6 +122,11 @@ export class LayoutMenu extends Component {
   onClickMenuItem = ({ key }) => {
     const path = getPath({ key });
     const { pathname } = this.props;
+    if (path.includes('docs')) {
+      const redirectPath = window.location.origin + path;
+      window.open(redirectPath, '_blank');
+      return;
+    }
     if (pathname !== path) {
       this.routing.push(path);
     }

@@ -23,6 +23,7 @@ import {
   AppstoreOutlined,
   SwitcherOutlined,
   ContainerOutlined,
+  FileTextOutlined,
 } from '@ant-design/icons';
 
 const renderMenu = (t) => {
@@ -834,6 +835,15 @@ const renderMenu = (t) => {
           ],
         },
       ],
+    },
+    {
+      path: '/docs/getting-started/introduction',
+      name: '入门文档',
+      key: 'docs',
+      icon: <FileTextOutlined />,
+      level: 0,
+      hasBreadcrumb: false,
+      hasChildren: false,
     },
   ];
   return menu;
